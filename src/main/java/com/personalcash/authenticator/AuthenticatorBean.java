@@ -1,14 +1,23 @@
 package com.personalcash.authenticator;
 
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class AuthenticatorBean {
 
 	private User user = new User();
 
-	public void login() {
-		System.out.println("LOGANDO!");
+	@Inject
+	private Users users;
+
+	public String login() {
+		if (users.exists(this.user)) {
+			return "index";
+		}
+		return "login";
 	}
 	
 	public User getUser() {
