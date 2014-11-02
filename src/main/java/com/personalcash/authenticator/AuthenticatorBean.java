@@ -19,7 +19,7 @@ public class AuthenticatorBean {
 	public String login() {
 		if (users.exists(this.user)) {
 			loggedUser.login(user);
-			return "index";
+			return "index?faces-redirect=true";
 		}
 		return "login";
 	}
