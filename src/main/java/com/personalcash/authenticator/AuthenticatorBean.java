@@ -12,9 +12,13 @@ public class AuthenticatorBean {
 
 	@Inject
 	private Users users;
+	
+	@Inject
+	private LoggedUser loggedUser;
 
 	public String login() {
 		if (users.exists(this.user)) {
+			loggedUser.login(user);
 			return "index";
 		}
 		return "login";
